@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import RedirectResponse
 from openai import OpenAI, OpenAIError
 import os
 from dotenv import load_dotenv
@@ -54,7 +55,10 @@ def ask_openai():
     logger.info("Returning response for /ask")
     return {"question": HARD_CODED_QUERY, "response": response_data}
 
+# Root route to redirect to /ask
+@app.get("/")
+def root():
+    return RedirectResponse(url="/ask")
 
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
