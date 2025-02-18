@@ -30,7 +30,7 @@ def query_openai(prompt: str):
     try:
         logger.info(f"Querying OpenAI with prompt: {prompt}")
         response = client.chat.completions.create(
-            model="gpt-4",
+            model="gpt-4o-mini-2024-07-18",
             messages=[
                 {"role": "system", "content": "You are an expert in mythology."},
                 {"role": "user", "content": prompt}
